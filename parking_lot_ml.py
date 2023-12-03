@@ -4,12 +4,16 @@ import Roboflow from roboflow
 def predict_percentage(model, img):
     a = model.predict(img, confidence=40, overlap=30).json()
     perc = 0
-    for i in range(a['predictions']):
+    for i in a['predictions']:
         if i['class'] == 'space-empty':
             perc += 1
     return perc / len(a['predictions'])
 
-rf = Roboflow(api_key="rf_l8XtjkeiHQUPlsFmBGfKb6DpS393") # publishable api key
+with open('private_api_key.txt', 'r') as file:
+    # Read a single line from the file
+    line = file.readline()
+
+rf = Roboflow(api_key=line) # publishable api key
 project = rf.workspace().project("pklot-1tros")
 model = project.version(2).model
 
