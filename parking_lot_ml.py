@@ -1,6 +1,6 @@
-import Roboflow from roboflow
+from roboflow import roboflow
 
-# this func use the model to calculate the percentage of space-empty in a parking lot
+# this func uses the model to calculate the percentage of space-empty in a parking lot
 def predict_percentage(model, img):
     a = model.predict(img, confidence=40, overlap=30).json()
     perc = 0
@@ -17,5 +17,7 @@ rf = Roboflow(api_key=line) # publishable api key
 project = rf.workspace().project("pklot-1tros")
 model = project.version(2).model
 
-img = ""
-print(predict_percentage(model, img))
+img = "" # input images
+res = predict_percentage(model, img) # output percentage
+
+print(res)
