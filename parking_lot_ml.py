@@ -1,4 +1,4 @@
-from roboflow import roboflow
+from roboflow import Roboflow
 
 # this func uses the model to calculate the percentage of space-empty in a parking lot
 def predict_percentage(model, img):
